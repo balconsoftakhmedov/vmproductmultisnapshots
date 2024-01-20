@@ -238,8 +238,42 @@ public function get_products(){
 		$sutl   = $hurl = JURI::base();
 		$stlurl = $sutl . "plugins/content/vmproductmultisnapshots/assets/style.css";
 		$document->addStyleSheet( $stlurl );
+		$js_url = $sutl . "plugins/content/vmproductmultisnapshots/assets/js/multi_add.js";
+		$document->addScript($js_url);
 	}
+	public function add_multi_products(){
 
+			$mainframe = JFactory::getApplication();
+
+			$post = JRequest::get('default');
+			$product_ids = $post['product_ids'];
+			$cart = VirtueMartCart::getCart();
+			if ($cart) {
+
+				foreach ($product_ids as $p_key => $virtuemart_product_id) {
+					$quantityPost = (int)$post['quantity'][$p_key];
+					if ($quantityPost > 0) {
+						$virtuemart_product_ids[$p_key] = $virtuemart_product_id;
+					}
+				}
+				$success = true;
+
+
+				if ($cart->add($virtuemart_product_ids, $success)) {
+					$msg = JText::_('COM_VIRTUEMART_PRODUCT_ADDED_SUCCESSFULLY');
+					$type = '';
+				} else {
+					$msg = JText::_('COM_VIRTUEMART_PRODUCT_NOT_ADDED_SUCCESSFULLY');
+					$type = 'error';
+				}
+
+				$mainframe->enqueueMessage($msg, $type);
+				$mainframe->redirect(JRoute::_('index.php?option=com_virtuemart&view=cart'));
+
+			} else {
+				$mainframe->enqueueMessage('Cart does not exist?', 'error');
+			}
+	}
 	function return_snapshot(&$params, $formclass)
 	{
 
