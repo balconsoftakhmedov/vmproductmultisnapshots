@@ -251,21 +251,22 @@ public function get_products(){
         $input = $mainframe->input;
         $productIds = $input->get('productIds', [], 'array');
         $cart = VirtueMartCart::getCart();
-
+		$post = JRequest::get('default');
         if ($cart) {
             $virtuemartProductIds = [];
 
-            foreach ($productIds as $productId) {
-                $quantityPost = (int)$input->get('quantity_' . $productId, 0, 'int');
+            foreach ($productIds as $p_key =>$productId) {
+                $quantityPost = (int)$post['quantity'][$p_key];
                 if ($quantityPost > 0) {
-                    $virtuemartProductIds[] = $productId;
+                    $virtuemartProductIds[$p_key] = $productId;
                 }
             }
 
             $success = true;
 
             if ($cart->add($virtuemartProductIds, $success)) {
-                $response = array('success' => true, 'message' => 'Products added to the cart successfully');
+				$cart_url = JRoute::_('index.php?option=com_virtuemart&view=cart');
+                $response = array('success' => true, 'message' => 'Products added to the cart successfully', 'cart_url' => $cart_url);
             } else {
                 $response = array('success' => false, 'message' => 'Failed to add products to the cart');
             }

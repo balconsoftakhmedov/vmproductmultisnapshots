@@ -1,4 +1,36 @@
 
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+	transform: rotate(0deg);
+  }
+  100% {
+	transform: rotate(360deg);
+  }
+}
+
+
 #ttr_content {
   .ttr_post {
 	&.flance-post {
@@ -173,26 +205,29 @@ a.addtocart_buttonmultiproduct0:hover {
 
 a.addtocart_buttonmultiproduct0:not(.btn) {
   font-size: 12px;
-      cursor: pointer;
+  cursor: pointer;
   background-color: rgb(216, 68, 34);
-   color: #ffffff !important;
+  color: #ffffff !important;
   border: unset;
   border-radius: 5px;
 }
+
 a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]) {
-     color: #ffffff;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
-a.addtocart_buttonmultiproduct0:not(.btn):hover, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):hover{
-    font-size: 12px;
+
+a.addtocart_buttonmultiproduct0:not(.btn):hover, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):hover {
+  font-size: 12px;
   color: #ffffff;
 }
+
 a.addtocart_buttonmultiproduct0:not(.btn):active, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):active {
-    font-size: 12px;
-    background-color: rgb(246, 213, 119); /* Change to your desired background color */
-    color: #ffffff;
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Show pointer cursor on hover */
+  font-size: 12px;
+  background-color: rgb(246, 213, 119); /* Change to your desired background color */
+  color: #ffffff;
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Show pointer cursor on hover */
 }
 
 
