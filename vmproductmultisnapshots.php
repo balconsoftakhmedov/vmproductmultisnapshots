@@ -6,11 +6,12 @@
 
 // no direct access
 defined('_JEXEC') or die;
+
+jimport('joomla.plugin.plugin');
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
 use VirtueMartCart;
-jimport('joomla.plugin.plugin');
 
 
 class plgContentVmproductmultisnapshots extends JPlugin
