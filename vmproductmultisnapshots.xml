@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.7" type="plugin" group="content">
+	<name>plg_content_vmproductmultisnapshots</name>
+	<author>Flance Project</author>
+	<creationDate>November 2012</creationDate>
+	<copyright>Copyright (C) 2012 flance.info. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>proga100|at|gmail.com</authorEmail>
+	<authorUrl>http://www.flance.info</authorUrl>
+	<version>1.7.0</version>
+	<description>Show multi Products Snapshots in multi product form in  Content (Enter multiple products by separating them with a |.)</description>
+	<files>
+		<filename plugin="vmproductmultisnapshots">vmproductmultisnapshots.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="showname"
+					type="radio"
+					default="y"
+					description="Defines whether or not to show the name of the product"
+					label="Show product name?">
+					<option value="n">No</option>
+					<option value="y">Yes</option>
+				</field>
+                         
+		<field name="showimage" type="radio" default="y"
+			label="Show product thumbnail?"
+			description="Defines whether or not to show the thumbnail of the product">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+		<field name="showdesc" type="radio" default="y"
+			label="Show product short description?"
+			description="Defines whether or not to show the short description of the product">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+             
+		<field name="showprice" type="radio" default="y"
+			label="Show product price?"
+			description="Defines whether or not to show the price of the product">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+               
+                <field name="showquantity" type="radio" default="y"
+			label="Show quantity input box?"
+			description="Defines whether or not to show the quantity inputbox of the product">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+		<field name="quantity" type="text" default="1"
+			label="How many to add to cart?"
+			description="Used when showaddtocart equals y" />
+		<field name="showaddtocart" type="radio" default="y"
+			label="Show 'add to cart' Button?"
+			description="Defines whether or not to show add to cart button">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+                <field name="showsku" type="radio" default="y"
+			label="Show Sku"
+			description="Defines whether or not to show SKU">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+                  <field name="showpkg" type="radio" default="y"
+			label="Show package"
+			description="Defines whether or not to show package">
+			<option value="n">No</option>
+			<option value="y">Yes</option>
+		</field>
+			
+                             <field  
+                                name="styling"
+				type="textarea"
+				description="CSS Style of multi product form"
+				label="CSS Style of multi product form"
+				message="CSS Style of multi product form"
+				cols="50"
+				rows="10"
+				filter="safehtml"
+                                 default="table.productsnap { 
+                                        width:100%;          
+                                 border:medium none;
+                                color:#000000;
+                                }
+                                table.productsnap tbody tr td {
+                                border-bottom:thin solid;
+                                }
+                                table.productsnap tbody tr th {
+                                background-color:#E4F1FB;
+                                border-bottom:3px solid green;
+                                border-top:3px solid green;
+                                }
+                                .addtocart_button {
+                                -moz-background-clip:border;
+                                -moz-background-inline-policy:continuous;
+                                -moz-background-origin:padding;
+                                background:transparent url(../images/addtocart.jpg) no-repeat scroll 0 0;
+                                height:25px;
+                                width:160px;
+                                }" />			
+		
+		
+                      
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>
