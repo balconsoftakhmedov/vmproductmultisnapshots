@@ -147,4 +147,34 @@ a.addtocart_buttonmultiproduct0:hover {
   color: #000;
 }
 
+a.addtocart_buttonmultiproduct0:not(.btn) {
+  font-size: 12px;
+  cursor: pointer;
+  background-color: rgb(216, 68, 34);
+  color: #ffffff !important;
+  border: unset;
+  border-radius: 5px;
+}
+
+a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]) {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a.addtocart_buttonmultiproduct0:not(.btn):hover, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):hover {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+a.addtocart_buttonmultiproduct0:not(.btn):active, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):active {
+  font-size: 12px;
+  background-color: rgb(246, 213, 119);
+  /* Change to your desired background color */
+  color: #ffffff;
+  text-decoration: none;
+  /* Remove underline */
+  cursor: pointer;
+  /* Show pointer cursor on hover */
+}
+
 /*# sourceMappingURL=style.css.map */

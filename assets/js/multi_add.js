@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// Assuming you have a button with the id 'addtocart_buttonmultiproduct0'
+
 	document.getElementById('addtocart_buttonmultiproduct0').addEventListener('click', function (event) {
 		// Prevent the default form submission
 		event.preventDefault();

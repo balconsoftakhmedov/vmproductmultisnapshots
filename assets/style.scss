@@ -125,12 +125,12 @@ a.addtocart_buttonmultiproduct0:hover {
 
 #fancybox-wrap {
   .vm-padded div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: 10px;
-}
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding-bottom: 10px;
+  }
 
   div#fancybox-content {
 	width: 100% !important;
@@ -152,21 +152,49 @@ a.addtocart_buttonmultiproduct0:hover {
 	line-height: 20px;
 	margin: 0px;
   }
-  a.continue_link.btn.btn-block.btn-default{
+
+  a.continue_link.btn.btn-block.btn-default {
 	display: none;
   }
 
 }
- .display-number {
-    display: none !important;
+
+.display-number {
+  display: none !important;
 }
+
 .flance-notice {
   display: none;
 }
 
 .product-sku {
-    color: #000;
+  color: #000;
 }
+
+a.addtocart_buttonmultiproduct0:not(.btn) {
+  font-size: 12px;
+      cursor: pointer;
+  background-color: rgb(216, 68, 34);
+   color: #ffffff !important;
+  border: unset;
+  border-radius: 5px;
+}
+a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]) {
+     color: #ffffff;
+    text-decoration: none;
+}
+a.addtocart_buttonmultiproduct0:not(.btn):hover, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):hover{
+    font-size: 12px;
+  color: #ffffff;
+}
+a.addtocart_buttonmultiproduct0:not(.btn):active, a.addtocart_buttonmultiproduct0:not([href]):not([tabindex]):active {
+    font-size: 12px;
+    background-color: rgb(246, 213, 119); /* Change to your desired background color */
+    color: #ffffff;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
 
 
 
