@@ -4,25 +4,27 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Prevent the default form submission
 		event.preventDefault();
 
-		var productIds = []; // An array to store product IDs
+		var productIds = [];
 		var formData = new FormData();
 
-		// Collect product IDs and quantities
-		document.querySelectorAll('.product-checkbox').forEach(function (checkbox) {
-			if (checkbox.checked) {
-				var productId = checkbox.value;
-				var quantity = document.getElementById('quantity_' + productId).value;
+		var productForms = document.querySelectorAll('.product.js-recalculate');
+		productForms.forEach(function (form) {
+			var quantityInput = form.querySelector('.quantity-input');
+			var productIdInput = form.querySelector('input[name="virtuemart_product_id[]"]');
 
-				productIds.push(productId);
+			var quantity = quantityInput.value;
+			var productId = productIdInput.value;
 
-				// Append product ID and quantity to FormData
+
+			if (quantity > 0) {
+				console.log(productId);
+				productIds.push(productId, quantity);
 				formData.append('productIds[]', productId);
 				formData.append('quantity_' + productId, quantity);
 			}
 		});
 
-		// Make AJAX request
-		fetch('index.php?option=com_ajax&plugin=vmproductmultisnapshots&format=json', {
+		fetch('index.php?option=com_ajax&group=content&plugin=addMultiProducts&format=json', {
 			method: 'POST',
 			body: formData
 		})

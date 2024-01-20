@@ -245,6 +245,7 @@ public function get_products(){
 	}
 	public function onAjaxAddMultiProducts()
     {
+
         $mainframe = Factory::getApplication();
         $input = $mainframe->input;
         $productIds = $input->get('productIds', [], 'array');
