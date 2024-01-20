@@ -7,7 +7,9 @@
 // no direct access
 defined('_JEXEC') or die;
 use Joomla\CMS\Uri\Uri;
-
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Factory;
+use VirtueMartCart;
 jimport('joomla.plugin.plugin');
 
 
@@ -241,39 +243,37 @@ public function get_products(){
 		$js_url = $sutl . "plugins/content/vmproductmultisnapshots/assets/js/multi_add.js";
 		$document->addScript($js_url);
 	}
-	public function add_multi_products(){
+	public function onAjaxAddMultiProducts()
+    {
+        $mainframe = Factory::getApplication();
+        $input = $mainframe->input;
+        $productIds = $input->get('productIds', [], 'array');
+        $cart = VirtueMartCart::getCart();
 
-			$mainframe = JFactory::getApplication();
+        if ($cart) {
+            $virtuemartProductIds = [];
 
-			$post = JRequest::get('default');
-			$product_ids = $post['product_ids'];
-			$cart = VirtueMartCart::getCart();
-			if ($cart) {
+            foreach ($productIds as $productId) {
+                $quantityPost = (int)$input->get('quantity_' . $productId, 0, 'int');
+                if ($quantityPost > 0) {
+                    $virtuemartProductIds[] = $productId;
+                }
+            }
 
-				foreach ($product_ids as $p_key => $virtuemart_product_id) {
-					$quantityPost = (int)$post['quantity'][$p_key];
-					if ($quantityPost > 0) {
-						$virtuemart_product_ids[$p_key] = $virtuemart_product_id;
-					}
-				}
-				$success = true;
+            $success = true;
 
+            if ($cart->add($virtuemartProductIds, $success)) {
+                $response = array('success' => true, 'message' => 'Products added to the cart successfully');
+            } else {
+                $response = array('success' => false, 'message' => 'Failed to add products to the cart');
+            }
 
-				if ($cart->add($virtuemart_product_ids, $success)) {
-					$msg = JText::_('COM_VIRTUEMART_PRODUCT_ADDED_SUCCESSFULLY');
-					$type = '';
-				} else {
-					$msg = JText::_('COM_VIRTUEMART_PRODUCT_NOT_ADDED_SUCCESSFULLY');
-					$type = 'error';
-				}
-
-				$mainframe->enqueueMessage($msg, $type);
-				$mainframe->redirect(JRoute::_('index.php?option=com_virtuemart&view=cart'));
-
-			} else {
-				$mainframe->enqueueMessage('Cart does not exist?', 'error');
-			}
-	}
+            echo json_encode($response);
+            $mainframe->close();
+        } else {
+            $mainframe->enqueueMessage('Cart does not exist?', 'error');
+        }
+    }
 	function return_snapshot(&$params, $formclass)
 	{
 

@@ -1,8 +1,9 @@
-// plugins/content/vmproductmultisnapshots/js/vmproductmultisnapshots.js
-
 document.addEventListener('DOMContentLoaded', function () {
-	// Assuming you have a button with the id 'add-to-cart-button'
-	document.getElementById('add-to-cart-button').addEventListener('click', function () {
+	// Assuming you have a button with the id 'addtocart_buttonmultiproduct0'
+	document.getElementById('addtocart_buttonmultiproduct0').addEventListener('click', function (event) {
+		// Prevent the default form submission
+		event.preventDefault();
+
 		var productIds = []; // An array to store product IDs
 		var formData = new FormData();
 
